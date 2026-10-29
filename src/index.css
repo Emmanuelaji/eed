@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-background text-text-main font-sans antialiased; overflow-x: hidden; }
+  :focus-visible { outline: 3px solid #138A52; outline-offset: 2px; }
+}
+
+@layer components {
+  .card { @apply bg-white rounded-2xl border border-border shadow-card; }
+  .label { @apply block text-sm font-medium text-text-main mb-1.5; }
+  .label-required::after { content: ' *'; @apply text-error; }
+  .input { @apply w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm text-text-main placeholder:text-text-secondary/70 focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary/30 disabled:bg-background disabled:text-text-secondary; }
+  .input-error { @apply border-error focus:border-error focus:ring-error/30; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap; }
+  .btn-sm { @apply px-3 py-1.5 text-sm; }
+  .btn-md { @apply px-4 py-2.5 text-sm; }
+  .btn-lg { @apply px-6 py-3.5 text-base; }
+  .btn-primary { @apply btn bg-primary text-white hover:bg-primary-dark; }
+  .btn-secondary { @apply btn bg-mint text-primary hover:bg-[#d6ecdc]; }
+  .btn-outline { @apply btn border border-border bg-white text-text-main hover:bg-mint; }
+  .btn-ghost { @apply btn text-text-secondary hover:bg-mint hover:text-primary; }
+  .btn-danger { @apply btn bg-error text-white hover:bg-red-700; }
+  .badge { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium; }
+  .badge-success { @apply badge bg-green-100 text-green-800; }
+  .badge-warning { @apply badge bg-amber-100 text-amber-800; }
+  .badge-error { @apply badge bg-red-100 text-red-800; }
+  .badge-info { @apply badge bg-sky-100 text-sky-800; }
+  .badge-neutral { @apply badge bg-gray-100 text-gray-700; }
+  .th { @apply px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-text-secondary bg-background; }
+  .td { @apply px-4 py-3 text-sm align-middle; }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+  .card { box-shadow: none; border: 0; }
+}
