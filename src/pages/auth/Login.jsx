@@ -10,7 +10,7 @@ import Logo from '../../components/ui/Logo'
 import { FullPageSpinner } from '../../components/ui/States'
 import { loginSchema } from '../../lib/validation'
 import { friendlyError } from '../../lib/errors'
-import { isSupabaseConfigured } from '../../lib/supabase'
+import { isSupabaseConfigured, supabaseConfigProblem } from '../../lib/supabase'
 
 export default function Login() {
   const { signIn, profile, user, loading } = useAuth()
@@ -42,7 +42,7 @@ export default function Login() {
           <div className="mb-8 lg:hidden"><Logo withText /></div>
           <h2 className="text-2xl font-bold">Sign in</h2>
           <p className="mt-1 text-sm text-text-secondary">Administrators, lecturers and students.</p>
-          {!isSupabaseConfigured && <div role="alert" className="mt-4 rounded-lg bg-amber-50 p-3 text-sm text-amber-800">Supabase is not configured. Copy <code>.env.example</code> to <code>.env</code> and restart.</div>}
+          {!isSupabaseConfigured && <div role="alert" className="mt-4 rounded-lg bg-amber-50 p-3 text-sm text-amber-800">Supabase is not configured: {supabaseConfigProblem} Fix <code>.env</code> and restart <code>npm run dev</code>.</div>}
           <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4" noValidate>
             <Input label="Email" type="email" autoComplete="email" required error={errors.email?.message} {...register('email')} />
             <div className="relative">
